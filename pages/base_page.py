@@ -14,6 +14,11 @@ class BasePage():
         self.url = url
         self.browser.implicitly_wait(timeout)
 
+    def go_to_basket_page(self):
+        assert self.is_element_present(*BasePageLocators.VIEW_BASKET_BUTTON), "Basket is not presented"
+        link = self.browser.find_element(*BasePageLocators.VIEW_BASKET_BUTTON)
+        link.click()
+
     def go_to_login_page(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
@@ -63,3 +68,4 @@ class BasePage():
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
