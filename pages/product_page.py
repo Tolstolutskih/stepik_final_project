@@ -20,8 +20,13 @@ class ProductPage(BasePage):
         
         assert self.is_element_present(*ProductPageLocators.PRICE_BASKET_ALERT), "Alert that the price to the basket not found"
         assert self.browser.find_element(*ProductPageLocators.PRICE_BASKET_ALERT).text in self.browser.find_element(*ProductPageLocators.PRICE_BASKET).text  ,"Price does not match alert"
-        
-        
 
-    
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.PRODUCT_IN_BASKET_ALERT), \
+            "Success message is presented, but should not be"
+
+    def should_be_success_message_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.PRODUCT_IN_BASKET_ALERT), \
+            "Success message has not disappeared "
+
         
